@@ -1,22 +1,24 @@
-/* TO DO:
+let movieTitle = ["How the Grinch Stole Christmas"];
+let moviePoster = ["img/grinch.png"];
+let movieRating = [5]; 
+let movieSynopsis = ["A classic holiday movie where the Grinch tries to steal Christmas from Whoville, but learns the true meaning of the holiday through the kindness of the Whos."];
 
-    - Create an array to hold the title of your favorite movie, URL for movie poster, your rating, and synopsis.
+let img = document.querySelector(".movie-image");
+img.src = moviePoster[0];
+img.alt = movieTitle[0];
 
-    - Select the movie image element.
-    - Set its link to the movie poster link from the array. 
-    - Set its alt text to the movie title from the array.
+let name = document.querySelector(".movie-name");
+name.textContent = movieTitle[0];
 
-    - Select the movie name element.
-    - Set its text to the movie title from the array.
+let desc = document.querySelector(".description");
+desc.textContent = movieSynopsis[0];
 
-    - Select the movie description element.
-    - Set its text to the movie synopsis from the array.
-
-    - Select the movie rating element.
-    - Create a variable that will hold the filled and empty stars. 
-    - Loop to generate star symbols based on the rating:
-        - If current counter is less than your rating, then add "★".
-        - Otherwise, add "☆".
-    - Set the movie rating element's text to display the generated stars. 
-
-*/
+let ratingDiv = document.querySelector(".rating");
+let stars = "";
+for (let i = 0; i < movieRating[0]; i++) {
+  stars += "★";
+}
+for (let i = movieRating[0]; i < 5; i++) {
+  stars += "☆";
+}
+ratingDiv.textContent = stars;

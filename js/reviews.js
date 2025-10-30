@@ -1,64 +1,48 @@
-/* TO DO:
+let usernames = ["HolidayFan22", "WhovilleResident", "MovieBuff99"];
+let dates = ["2024-10-30", "2024-11-15", "2024-12-01"];
+let reviews = ["A holiday classic that never gets old. The Grinch is both funny and heartwarming.","I watch this every Christmas with my family. It always makes us laugh and smile.","The costumes and Jim Carrey’s performance are amazing. Such a fun movie!"];
+let ratings = [5, 4, 3]; 
 
-	- Create an array to hold three different usernames. 
+let reviewCards = document.querySelectorAll(".review-card");
 
-	- Create an array with the dates of each review (i.e., 2024-10-30).
+for (let i = 0; i < reviewCards.length; i++) {
+  let card = reviewCards[i];
 
-	- Create an array to hold the actual reviews. 
+  let ratingDiv = card.querySelector(".review-rating");
+  let stars = "";
+  for (let j = 0; j < ratings[i]; j++) {
+    stars += "★";
+  }
+  for (let j = ratings[i]; j < 5; j++) {
+    stars += "☆";
+  }
+  ratingDiv.textContent = stars;
+  ratingDiv.setAttribute("data-rating", ratings[i]);
 
-	- Create an array to hold three different ratings. 
+  let usernameElem = card.querySelector(".review-username");
+  usernameElem.firstChild.textContent = usernames[i] + " ";
+  let dateElem = card.querySelector(".review-date");
+  dateElem.textContent = dates[i];
 
-*/
+  let textElem = card.querySelector(".review-text");
+  textElem.textContent = reviews[i];
+}
 
-/* TO DO:
-
-	- Select ALL review card elements and store in a variable.
-
-	- Loop through each card to update its content with review information:
-	  - Select the current review rating element.
-	  - Create a variable that will hold the filled and empty stars. 
-	  - Loop to generate star symbols based on the rating:
-	    - If current counter is less than the rating, then add "★".
-	    - Otherwise, add "☆".
-	  - Set the review rating element's text to display the generated stars.
-	  - Set the review rating element's attribute to current rating from the array. 
-
-	  - Select the current review username element.
-	  - Set its text to the username from the array and add a space to separate it from the date.
-
-	  - Select the current review date element.
-	  - Set its markup to the date from the array.
-
-	  - Select the current review text element.
-	  - Set its text to the review text from the array.
- 
-*/
-
-
-
-// Get the dropdown element for filtering ratings by its ID
 var filterDropdown = document.getElementById('rating-filter');
-
-// Add an event listener to the dropdown that triggers when the selected option changes
 filterDropdown.addEventListener('change', function() {
-   	
-   	// Store the currently selected rating from the dropdown
-    var selected_rating = filterDropdown.value;
+  var selected_rating = filterDropdown.value;
 
+  reviewCards.forEach(card => {
+    let ratingVal = card.querySelector(".review-rating").getAttribute("data-rating");
 
-    /* TO DO:
-
-		- Loop through each card:
-		  - Select the current review rating element.
-		  - Get its rating attribute value.
-
-		  - Check if the selected rating is 'All' or matches the card's rating.
-		  	- If it matches, display the card.
-		  	- Otherwise, hide the card
-
-	*/
-
+    if (selected_rating === "All" || ratingVal === selected_rating) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
 });
+
 
 
 
